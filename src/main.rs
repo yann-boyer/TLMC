@@ -24,6 +24,7 @@ const WINDOW_HEIGHT: u32 = (CHIP8_HEIGHT * PIXEL_SCALE) as u32;
 
 const CPU_CLOCK_DELAY: u64 = 1;
 const TIMER_DIVISION_CLOCK: u8 = 9;
+
 pub fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -43,10 +44,7 @@ pub fn main() {
         .unwrap();
  
     let mut canvas = window.into_canvas().build().unwrap();
- 
-    canvas.set_draw_color(Color::RGB(0, 255, 255));
-    canvas.clear();
-    canvas.present();
+
     let mut event_pump = sdl_context.event_pump().unwrap();
     
     let mut emulator = Emulator::new();
@@ -56,7 +54,6 @@ pub fn main() {
 
     let mut div_cycles: u8 = 0;
     while running {
-        //canvas.clear();
         emulator.run_instruction();
         div_cycles += 1;
 
@@ -178,10 +175,10 @@ pub fn main() {
             }
         }
         
-        if emulator.has_drawn() { // true is for testing.
+        if emulator.has_drawn() {
             for y in 0..CHIP8_HEIGHT {
                 for x in 0..CHIP8_WIDTH {
-                    if emulator.pixel_is_on_at(x as u8, y as u8) { // true is for testing.
+                    if emulator.pixel_is_on_at(x as u8, y as u8) {
                         canvas.set_draw_color(Color::RGB(255, 255, 255));
                     } else {
                         canvas.set_draw_color(Color::RGB(0, 0, 0));
@@ -202,7 +199,6 @@ pub fn main() {
             div_cycles = 0;
         }
 
-        //canvas.present();
         std::thread::sleep(Duration::from_millis(CPU_CLOCK_DELAY));
     }
 }
