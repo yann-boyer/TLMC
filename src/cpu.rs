@@ -255,8 +255,10 @@ impl Cpu {
                         }
 
                         if !pressed {
-                            return
+                            return;
                         }
+
+                        self.pc += 2;
                     },
                     0x0015 => {
                         self.delay_timer = self.read_reg(x);
