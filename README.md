@@ -38,7 +38,7 @@ Now, you can build the project :
 
 
 ```
-$ git clone https://github.com/yann-boyer/OKUR.git
+$ git clone https://github.com/yann-boyer/TLMC.git
 $ cd TLMC
 $ cargo build --release
 ```
