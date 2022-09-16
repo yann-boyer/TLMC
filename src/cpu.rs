@@ -2,13 +2,14 @@ use rand::{Rng, rngs::ThreadRng};
 
 use crate::display::Display;
 use crate::ram::Ram;
+use crate::sound_system::SoundSystem;
 
 const REGISTERS_COUNT: usize = 16;
 const STACK_SIZE: usize = 16;
 const KEYS_COUNT: usize = 16;
 const PC_START: u16 = 0x200;
 
-pub struct Cpu {
+pub struct Cpu<'a> {
     v: [u8; REGISTERS_COUNT],
     stack: [u16; STACK_SIZE],
     keys: [u8; KEYS_COUNT],
@@ -18,11 +19,12 @@ pub struct Cpu {
     sp: u16,
     pc: u16,
     rng: ThreadRng,
+    sound_system: SoundSystem<'a>,
     draw_flag: bool
 }
 
-impl Cpu {
-    pub fn new() -> Cpu {
+impl <'a> Cpu<'a> {
+    pub fn new() -> Cpu<'a> {
         Cpu {
             v: [0x0; REGISTERS_COUNT],
             stack: [0x0; STACK_SIZE],
@@ -33,6 +35,7 @@ impl Cpu {
             sp: 0x0,
             pc: PC_START,
             rng: rand::thread_rng(),
+            sound_system: SoundSystem::new(),
             draw_flag: false
         }
     }
@@ -42,7 +45,7 @@ impl Cpu {
         if self.sound_timer > 0x0 {
             self.sound_timer -= 1;
             if self.sound_timer == 0x1 {
-                println!("BEEP !");
+                self.sound_system.play_beep_sound();
             }
         }
     }

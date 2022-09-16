@@ -24,14 +24,14 @@ static FONTSET: [u8; 80] = [
     0xF0, 0x80, 0xF0, 0x80, 0x80, // F
 ];
 
-pub struct Emulator {
-    cpu: Cpu,
+pub struct Emulator<'a> {
+    cpu: Cpu<'a>,
     ram: Ram,
     display: Display
 }
 
-impl Emulator {
-    pub fn new() -> Emulator {
+impl <'a>  Emulator<'a> {
+    pub fn new() -> Emulator<'a> {
         Emulator {
             cpu: Cpu::new(),
             ram: Ram::new(),

@@ -2,7 +2,7 @@ mod ram;
 mod display;
 mod cpu;
 mod emulator;
-//mod sound_system;
+mod sound_system;
 
 extern crate sdl2; 
 
