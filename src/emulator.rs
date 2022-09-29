@@ -78,7 +78,6 @@ impl <'a>  Emulator<'a> {
             Err(why) => {
                 println!("Error : Unable to open the given file !");
                 println!("Why -> {:?}", why);
-                std::process::exit(1);
             }
         }
 
