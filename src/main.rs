@@ -10,6 +10,7 @@ use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use std::time::Duration;
+use sdl2::rect::Rect;
 
 use std::env;
 
@@ -184,7 +185,7 @@ pub fn main() {
                         canvas.set_draw_color(Color::RGB(0, 0, 0));
                     }
 
-                    let pixel = sdl2::rect::Rect::new(x as i32 * PIXEL_SCALE as i32, y as i32 * PIXEL_SCALE as i32, PIXEL_SCALE as u32, PIXEL_SCALE as u32);
+                    let pixel = Rect::new(x as i32 * PIXEL_SCALE as i32, y as i32 * PIXEL_SCALE as i32, PIXEL_SCALE as u32, PIXEL_SCALE as u32);
                     canvas.fill_rect(pixel).unwrap();
                 }
             }
