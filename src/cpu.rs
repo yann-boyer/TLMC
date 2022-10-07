@@ -153,12 +153,12 @@ impl <'a> Cpu<'a> {
                         self.pc += 2;
                     },
                     0x0004 => {
-                        let r = self.read_reg(x) + self.read_reg(y);
+                        let r = self.read_reg(x) as u16 + self.read_reg(y) as u16;
 
                         if r > 0xFF {self.write_reg(0xF, 1);}
                         else {self.write_reg(0xF, 0);}
 
-                        self.write_reg(x, r & 0xFF);
+                        self.write_reg(x, (r & 0xFF) as u8);
                         self.pc += 2;
                     },
                     0x0005 => {
