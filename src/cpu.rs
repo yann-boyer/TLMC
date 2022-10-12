@@ -170,7 +170,7 @@ impl <'a> Cpu<'a> {
                     },
                     0x0006 => {
                         self.write_reg(0xF, self.read_reg(x) & 0x1);
-                        self.write_reg(x, self.read_reg(x) << 1);
+                        self.write_reg(x, self.read_reg(x) >> 1);
                         self.pc += 2;
                     },
                     0x0007 => {
@@ -182,7 +182,7 @@ impl <'a> Cpu<'a> {
                     },
                     0x000E => {
                         self.write_reg(0xF, (self.read_reg(x) & 128) >> 7);
-                        self.write_reg(x, self.read_reg(x) >> 1);
+                        self.write_reg(x, self.read_reg(x) << 1);
                         self.pc += 2;
                     },
                     _ => panic!("Unknown opcode -> 0x{:x}", opcode)
