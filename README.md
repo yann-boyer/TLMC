@@ -1,5 +1,4 @@
-TLMC is a small and basic Chip8 Emulator written in Rust with Rust-SDL2, made for fun and my high school
-assignment.
+TLMC is a small and basic Chip8 Emulator written in Rust with Rust-SDL2, made for fun.
 
 
 If you are on a Linux based system, run these following commands to build the project :
